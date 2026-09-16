@@ -5,6 +5,8 @@
 
 using namespace std;
 
+// Return the correct date suffix for a day number.
+// Examples: 1 -> st, 2 -> nd, 3 -> rd, 21 -> st, 22 -> nd, 23 -> rd.
 string daySuffix(int day)
 {
     if (day % 100 >= 11 && day % 100 <= 13)
@@ -23,6 +25,7 @@ string daySuffix(int day)
     }
 }
 
+// Convert a numeric month value into its full English name.
 string monthName(int month)
 {
     string months[] = {"January", "February", "March", "April", "May", "June",
@@ -32,8 +35,10 @@ string monthName(int month)
 
 int main()
 {
+    // These variables store the student's personal admission details.
     string firstName, lastName, studyProgram, academicYear;
 
+    // Capture the student's name and course information.
     cout << "Enter first name: ";
     getline(cin, firstName);
 
@@ -46,16 +51,20 @@ int main()
     cout << "Enter academic year: ";
     getline(cin, academicYear);
 
+    // Get the current system date and time.
     time_t now = time(0);
     tm* date = localtime(&now);
 
+    // Extract day, month, and year parts from the current date.
     int day = date->tm_mday;
     int month = date->tm_mon + 1;
     int year = date->tm_year + 1900;
 
+    // Display the formatted date using the day suffix and month name.
     cout << "\nDate: " << day << daySuffix(day) << " " << monthName(month)
          << " " << year << "\n\n";
 
+    // Compose a formal admission letter addressed to the student.
     cout << "To: " << firstName << " " << lastName << ",\n\n";
     cout << "Dear " << firstName << ",\n\n";
     cout << "CONGRATULATIONS! I am pleased to inform you that the Makerere University\n";
